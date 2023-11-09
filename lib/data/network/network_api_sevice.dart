@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart';
 import 'package:vritti_mechine_test/common/res/app_url.dart';
@@ -12,7 +13,10 @@ class NetWorkApiService implements BaseNetworkApiService {
       var uri = Uri.http(AppUrl.baseUrl, endPoint);
       Response response = await http.get(uri);
 
-      return returnResponse(response);
+      final body = returnResponse(response);
+
+      return jsonDecode(body) as Map<String, dynamic>;
+      
     } catch (e) {
       log(e.toString());
       rethrow;
