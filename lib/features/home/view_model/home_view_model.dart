@@ -2,30 +2,30 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:vritti_mechine_test/data/app_response/response.dart';
 import 'package:vritti_mechine_test/data/network/network_api_sevice.dart';
-import 'package:vritti_mechine_test/features/home/model/students_model.dart';
-import 'package:vritti_mechine_test/features/home/repository/getall_students_repository.dart';
+import 'package:vritti_mechine_test/features/home/model/employees_model.dart';
+import 'package:vritti_mechine_test/features/home/repository/getall_employees_repository.dart';
 
 class HomeViewModel with ChangeNotifier {
-  final _getStudentRepo = GetAllStudentsRepository(NetWorkApiService());
+  final _getEmployeeRepo = GetAllEmployeesRepository(NetWorkApiService());
 
-  ApiResponse<StudentsModel> getAllStudentsApi = ApiResponse.loading();
+  ApiResponse<EmployeesModel> getAllEmployeesApi = ApiResponse.loading();
 
-  void setGetAllStudents(ApiResponse<StudentsModel> apiResponse) {
-    getAllStudentsApi = apiResponse;
+  void setGetAllEmployees(ApiResponse<EmployeesModel> apiResponse) {
+    getAllEmployeesApi = apiResponse;
     notifyListeners();
   }
 
-  Future<void> getAllStudents() async {
-    setGetAllStudents(ApiResponse.loading());
-    _getStudentRepo.getAllStudents().then((value) {
-      setGetAllStudents(ApiResponse.completed(value));
+  Future<void> getAllEmployees() async {
+    setGetAllEmployees(ApiResponse.loading());
+    _getEmployeeRepo.getAllEmployees().then((value) {
+      setGetAllEmployees(ApiResponse.completed(value));
 
-      log("success");
-      log(value.students[0].toString());
     }).onError((error, stackTrace) {
-      setGetAllStudents(ApiResponse.error(error.toString()));
+      setGetAllEmployees(ApiResponse.error(error.toString()));
 
       log(error.toString());
     });
   }
+
+  
 }

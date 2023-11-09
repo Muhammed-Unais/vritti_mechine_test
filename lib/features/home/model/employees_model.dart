@@ -1,30 +1,30 @@
-import 'package:vritti_mechine_test/features/home/model/student.dart';
+import 'package:vritti_mechine_test/features/home/model/employee.dart';
 
-class StudentsModel {
+class EmployeesModel {
   int? page;
   int? perPage;
   int? total;
   int? totalPages;
-  List<Student> students;
+  List<Employee> employees;
 
-  StudentsModel({
+  EmployeesModel({
     this.page,
     this.perPage,
     this.total,
     this.totalPages,
-    required this.students,
+    required this.employees,
   });
 
-  factory StudentsModel.fromMap(Map<String, dynamic> json) => StudentsModel(
+  factory EmployeesModel.fromMap(Map<String, dynamic> json) => EmployeesModel(
         page: json["page"],
         perPage: json["per_page"],
         total: json["total"],
         totalPages: json["total_pages"],
-        students: json["data"] == null
+        employees: json["data"] == null
             ? []
-            : List<Student>.from(
+            : List<Employee>.from(
                 json["data"]!.map(
-                  (x) => Student.fromJson(x),
+                  (x) => Employee.fromJson(x),
                 ),
               ),
       );

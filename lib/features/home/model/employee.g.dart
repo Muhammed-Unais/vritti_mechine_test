@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'student.dart';
+part of 'employee.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StudentImpl _$$StudentImplFromJson(Map<String, dynamic> json) =>
-    _$StudentImpl(
+_$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
+    _$EmployeeImpl(
       id: json['id'] as int,
       email: json['email'] as String,
       first_name: json['first_name'] as String,
@@ -15,7 +15,7 @@ _$StudentImpl _$$StudentImplFromJson(Map<String, dynamic> json) =>
       avatar: json['avatar'] as String,
     );
 
-Map<String, dynamic> _$$StudentImplToJson(_$StudentImpl instance) =>
+Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
