@@ -28,7 +28,6 @@ class ActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: AppConst.kWidth * 0.3,
         margin: EdgeInsets.all(20.w),
         padding: EdgeInsets.all(20.w),
         decoration: BoxDecoration(
@@ -47,7 +46,7 @@ class ActionButton extends StatelessWidget {
               ReusableText(
                 text: buttonText,
                 style: appStyle(
-                  12,
+                  12.w,
                   textColor,
                   FontWeight.w500,
                 ),
