@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<HomeViewModel>().getAllEmployees();
+      context.read<HomeViewModel>().refresh();
     });
     super.initState();
   }

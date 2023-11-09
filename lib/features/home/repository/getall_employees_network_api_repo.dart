@@ -3,10 +3,10 @@ import 'package:vritti_mechine_test/common/res/app_url.dart';
 import 'package:vritti_mechine_test/data/network/base_network_api_service.dart';
 import 'package:vritti_mechine_test/features/home/model/employees_model.dart';
 
-class GetAllEmployeesRepository {
+class GetAllEmployeesApiRepository {
   final BaseNetworkApiService apiService;
 
-  GetAllEmployeesRepository(this.apiService);
+  GetAllEmployeesApiRepository(this.apiService);
 
   Future<EmployeesModel> getAllEmployees() async {
     try {
