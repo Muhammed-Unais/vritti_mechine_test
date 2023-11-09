@@ -7,8 +7,8 @@ class Student with _$Student {
   factory Student({
     required int id,
     required String email,
-    required String firstName,
-    required String lastName,
+    required String first_name,
+    required String last_name,
     required String avatar,
   }) = _Student;
 

@@ -8,7 +8,7 @@ class GetAllStudentsRepository {
 
   GetAllStudentsRepository(this.apiService);
 
-  Future<StudentsModel> getAllStudentsModel() async {
+  Future<StudentsModel> getAllStudents() async {
     try {
       final response = await apiService.getApiResponse(AppUrl.getAllStudents);
       
