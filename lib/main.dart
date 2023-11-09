@@ -11,20 +11,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      useInheritedMediaQuery: true,
-      designSize: const Size(375, 825),
-      minTextAdapt: true,
-      builder: (context,child) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: const HomePage(),
-        );
-      }
-    );
+        useInheritedMediaQuery: true,
+        designSize: const Size(375, 825),
+        minTextAdapt: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: const HomePage(),
+          );
+        });
   }
 }
 
@@ -40,7 +39,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: Center(
+        child: Text("Home"),
+      ),
+    );
   }
 }
-
