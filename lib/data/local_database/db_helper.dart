@@ -12,7 +12,9 @@ class DbHelper {
     );
   }
 
+
   static Future<sql.Database> db() async {
+
     return sql.openDatabase(
       "vritti",
       version: 1,

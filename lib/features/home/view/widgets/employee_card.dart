@@ -77,11 +77,11 @@ class EmployeeCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ActionButton(
-                    buttonText: "Update",
-                    icon: Icons.edit,
+                    buttonText: homeProvider.isUpdate ?"Submit": "Update",
+                    icon:homeProvider.isUpdate ?Icons.done: Icons.edit,
                     color: AppConst.kBkDark,
-                    textColor: AppConst.kLight,
-                    iconColor: AppConst.kLight,
+                    textColor:homeProvider.isUpdate ?AppConst.kGreen: AppConst.kLight,
+                    iconColor:homeProvider.isUpdate ?AppConst.kGreen: AppConst.kLight,
                     onTap: () {
                       if (!homeProvider.isUpdate) {
                         homeProvider.setIsUpdate(true, employee);

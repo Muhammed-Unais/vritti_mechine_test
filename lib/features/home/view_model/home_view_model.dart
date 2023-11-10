@@ -38,10 +38,11 @@ class HomeViewModel with ChangeNotifier {
 
   bool isUpdate = false;
 
-  Future<void> initilize({TickerProvider? vysnc}) async {
+  Future<void> initilize(
+      {TickerProvider? vysnc, bool isApiFetching = true}) async {
     tickerProvider ??= vysnc;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await refresh();
+      await refresh(isApiFetching: isApiFetching);
       int length = count;
       vysnc ??= tickerProvider;
       tabController = TabController(length: length, vsync: vysnc!);
@@ -69,14 +70,13 @@ class HomeViewModel with ChangeNotifier {
   }
 
   Future<void> getAllEmployees() async {
-    await _getEmployeeNetworkApiRepo.getAllEmployees().then((value) async{
+
+    await _getEmployeeNetworkApiRepo.getAllEmployees().then((value) async {
       for (var employee in value.employees) {
         await addEmployee(employee);
       }
-      await refresh();
-    }).onError((error, stackTrace) {
-       
-    });
+      await initilize(isApiFetching: false);
+    }).onError((error, stackTrace) {});
   }
 
   Future addEmployee(Employee employee) async {
@@ -86,11 +86,11 @@ class HomeViewModel with ChangeNotifier {
         .onError((error, stackTrace) {});
   }
 
-  Future<void> refresh() async {
+  Future<void> refresh({bool isApiFetching = false}) async {
     setAllEmployees(AppResponse.loading());
     await _getEmployeeLocalRepo.getAllEmployeesLocalRepo().then((value) async {
-      if (value.isEmpty) {
-        getAllEmployees();
+      if (value.isEmpty && isApiFetching) {
+        await getAllEmployees();
       } else {
         final employees = value.map((e) => Employee.fromJson(e)).toList();
 
@@ -110,7 +110,7 @@ class HomeViewModel with ChangeNotifier {
   Future<void> delete(int id, BuildContext context) async {
     _deleteEmployeeLocalRepo.deleteEmployee(id).then((value) async {
       Navigator.pop(context);
-      await initilize();
+      await initilize(isApiFetching: false);
     }).onError((error, stackTrace) {});
   }
 

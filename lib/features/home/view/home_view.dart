@@ -47,8 +47,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
             child: GestureDetector(
-              onTap: () {
-                context.read<HomeViewModel>().refresh();
+              onTap: () async{
+                await context.read<HomeViewModel>().refresh(isApiFetching: true);
               },
               child: const Icon(
                 Icons.refresh,
