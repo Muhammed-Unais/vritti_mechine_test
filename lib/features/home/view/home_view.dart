@@ -47,8 +47,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
             child: GestureDetector(
-              onTap: () async{
-                await context.read<HomeViewModel>().refresh(isApiFetching: true);
+              onTap: () async {
+                await context
+                    .read<HomeViewModel>()
+                    .refresh(isApiFetching: true);
               },
               child: const Icon(
                 Icons.refresh,
@@ -65,9 +67,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               case Status.completed:
                 final data = homeProvider.getAllEmployeesResponse.data;
                 if (homeProvider.tabController != null) {
+                  if (data!.isEmpty) {
+                    return Center(
+                      child: ReusableText(
+                        text: "No Data!. Please refresh",
+                        style: appStyle(16, AppConst.kLight, FontWeight.w500),
+                      ),
+                    );
+                  }
                   return HomeBody(
                     controller: homeProvider.tabController!,
-                    employees: data!,
+                    employees: data,
                   );
                 } else {
                   return const Center(
